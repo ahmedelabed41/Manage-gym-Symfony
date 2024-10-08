@@ -2,14 +2,16 @@
 framework:
     secret: '%env(APP_SECRET)%'
     #csrf_protection: true
+    http_method_override: false
     handle_all_throwables: true
-
+    
     # Enables session support. Note that the session will ONLY be started if you read or write from it.
     # Remove or comment this section to explicitly disable session support.
     session:
         handler_id: null
         cookie_secure: auto
         cookie_samesite: lax
+        storage_factory_id: session.storage.factory.native
 
     #esi: true
     #fragments: true
@@ -21,3 +23,10 @@ when@test:
         test: true
         session:
             storage_factory_id: session.storage.factory.mock_file
+
+    assets:
+        # le répertoire public où les assets compilés et gérés par Webpack Encore sont stockés
+        public_path: /build
+
+        # le répertoire où Webpack Encore doit mettre les fichiers compilés
+        output_path: public/build

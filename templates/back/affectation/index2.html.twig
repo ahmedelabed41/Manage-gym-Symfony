@@ -1,0 +1,124 @@
+
+{% extends 'baseback.html.twig' %}
+
+{% block title %}Affectation index{% endblock %}
+
+{% block body %}
+ <!-- Container-fluid starts-->
+ <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+            <div class="page-body">
+                <!-- All Affectation Table Start -->
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card card-table">
+                                <div class="card-body">
+                                    <div class="title-header option-title">
+                                        <h5>Tous les affectations</h5>
+                                        <form class="d-inline-flex">
+                                            <a href="{{path('app_back_affectation_new')}}"
+                                                class="align-items-center btn btn-primary" style="margin-bottom: 15px">
+                                                Ajouter une affectation
+                                            </a>
+                                        </form>
+                                    </div>
+
+                                    <div class="table-responsive affectation-table">
+                                        <div>
+                                            <table class="table all-package theme-table" id="table_id">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Id</th>
+                                                        <th>Nom et prénom de l'adhérent</th>
+                                                        <th>Nom et prénom du coach</th>
+                                                        <th>Statut</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for affectation in affectations %}
+<tr>
+    <td>{{ affectation.id }}</td>
+    <td>
+        {% if affectation.adherent %}
+            {{ affectation.adherent.nom }} {{ affectation.adherent.prenom }}
+        {% else %}
+            N/A
+        {% endif %}
+        
+    </td>
+    <td>
+        {% if affectation.coach %}
+            {{ affectation.coach.nom }} {{ affectation.coach.prenom }}
+        {% else %}
+            N/A
+        {% endif %}
+    </td>
+                                                        {% if affectation.statut == 'en attente' %}
+                                                        <td style="color: #FFC107">{{ affectation.statut }}</td>
+                                                        {% else %}
+                                                        <td style="color: #28A745">{{ affectation.statut }}</td>
+                                                        {% endif %}
+</tr>
+{% endfor %}
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <!-- All Affectation Table Ends-->
+
+{% endblock %}
+
+
+
+
+
+{#{% extends 'base.html.twig' %}
+
+{% block title %}Affectation index{% endblock %}
+
+{% block body %}
+    <h1>Affectation index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom et prénom de l'adhérent</th>
+                <th>Nom et prénom du coach</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for affectation in affectations %}
+                <tr>
+                    <td>{{ affectation.id }}</td>
+                    <td>
+                        {{ affectation.adherent.nom }} {{ affectation.adherent.prenom }}
+                    </td>
+                    <td>
+                        {{ affectation.coach.nom }} {{ affectation.coach.prenom }}
+                    </td>
+                    <td>
+                        <a href="{{ path('app_back_affectation_show', {'id': affectation.id}) }}">show</a>
+                        <a href="{{ path('app_back_affectation_edit', {'id': affectation.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">No records found</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_back_affectation_new') }}">Create new</a>
+{% endblock %}#}
+

@@ -1,0 +1,70 @@
+
+{% extends 'baseback.html.twig' %}
+
+{% block title %}Affectation{% endblock %}
+
+{% block container %}
+
+<div class="container d-flex justify-content-center" style="margin-top: 120px">
+    <div class="row">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-lg-12 m-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-header-2" style="margin-bottom: 60px">
+                                <h2 class="text-center">Les informations de l'affectation</h2>
+                            </div>
+                            <div >
+                                <form action="url_de_traitement" method="POST">
+                                    <div class="form-group">
+                                        <label for="id" style="text-decoration: underline; font-size: 22px">Id:</label>
+                                        <label style="color: white; margin-left: 15px; font-size: 20px">{{ affectation.id }}</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nom" style="text-decoration: underline; font-size: 22px">Adhérent : </label>
+                                        <label style="color: white; margin-left: 15px; font-size: 20px">{{ affectation.adherent.nom }} {{ affectation.adherent.prenom }}</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nom" style="text-decoration: underline; font-size: 22px">Coach : </label>
+                                        <label style="color: white; margin-left: 15px; font-size: 20px">{{ affectation.coach.nom }} {{ affectation.coach.prenom }}</label>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="d-flex justify-content-center my-4">
+        <button class="btn btn-secondary mx-4" onclick="goBack()">Retour</button>
+    </div>
+    
+
+
+    <a href="{{ path('app_back_affectation_index') }}">back to list</a>
+
+    <a href="{{ path('app_back_affectation_edit', {'id': affectation.id}) }}">edit</a>
+
+    {{ include('back/affectation/_delete_form.html.twig') }}
+
+    <script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+

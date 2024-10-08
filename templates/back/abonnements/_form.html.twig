@@ -1,0 +1,133 @@
+{{ form_start(form, { 'attr': { 'onsubmit': 'return validateForm()' } }) }}
+
+{#<div class="mb-4 row align-items-center">
+    <label class="form-label-title col-sm-3 mb-0">User :</label>
+    <div class="col-sm-6">
+        <select name="user" class="form-control" id="userSelect">
+            <option disabled selected>Sélectionner un adhérent</option>
+            {% for user in users %}
+                <option value="{{ user.id }}" {% if abonnements.user and abonnements.user.id == user.id %}selected{% endif %}>
+                    {{ user.nom }} {{ user.prenom }}
+                </option>
+            {% endfor %}
+        </select>
+        <div class="invalid-feedback" id="userError">L'utilisateur ne peut pas être vide</div>
+    </div>
+</div>#}
+
+<div class="mb-4 row align-items-center">
+    <label class="form-label-title col-sm-3 mb-0">Date de début :</label>
+    <div class="col-sm-6">
+        <input type="date" name="dateDebut" class="form-control" id="dateDebutInput" value="{{ abonnements.dateDebut ? abonnements.dateDebut|date('Y-m-d') : '' }}">
+        <div class="invalid-feedback" id="dateDebutError">La date de début ne peut pas être vide</div>
+    </div>
+</div>
+
+<div class="mb-4 row align-items-center">
+    <label class="form-label-title col-sm-3 mb-0">Date de fin :</label>
+    <div class="col-sm-6">
+        <input type="date" name="dateFin" class="form-control" id="dateFinInput" value="{{ abonnements.dateFin ? abonnements.dateFin|date('Y-m-d') : '' }}">
+        <div class="invalid-feedback" id="dateFinError">La date de fin ne peut pas être vide</div>
+        <div class="invalid-feedback" id="dateOrderError">La date de fin doit être après la date de début</div>
+        <div class="invalid-feedback" id="dateMinimumError">La date de fin doit être au moins 30 jours après la date de début</div>
+
+    </div>
+</div>
+
+<div class="mb-4 row align-items-center">
+    <label class="form-label-title col-sm-3 mb-0">Description :</label>
+    <div class="col-sm-6">
+        {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+    </div>
+</div>
+
+<div class="mb-4 row align-items-center">
+    <label class="form-label-title col-sm-3 mb-0">Paiement :</label>
+    <div class="col-sm-6 input-group">
+        {{ form_widget(form.payement, {'attr': {'class': 'form-control'}}) }}
+        <div class="input-group-append">
+            <span class="input-group-text">dt</span>
+        </div>
+    </div>
+</div>
+
+<div class="d-grid gap-2 d-md-flex justify-content-center" style="margin-top: 50px">
+    <button type="submit" class="btn btn-primary mr-3">{{ button_label|default('Envoyer un email') }}</button>
+    <button type="button" class="btn btn-secondary mx-4" onclick="goBack()">Retour</button>
+</div>
+
+{{ form_end(form) }}
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+
+    function validateForm() {
+        var isValid = true;
+
+        var userSelect = document.getElementById('userSelect');
+        var dateDebutInput = document.getElementById('dateDebutInput');
+        var dateFinInput = document.getElementById('dateFinInput');
+
+        var userError = document.getElementById('userError');
+        var dateDebutError = document.getElementById('dateDebutError');
+        var dateFinError = document.getElementById('dateFinError');
+        var dateOrderError = document.getElementById('dateOrderError');
+
+        // Reset errors
+        userError.style.display = 'none';
+        dateDebutError.style.display = 'none';
+        dateFinError.style.display = 'none';
+        dateOrderError.style.display = 'none';
+
+        // Check if user is selected
+        if (userSelect.value === '' || userSelect.value === 'Sélectionner un adhérent') {
+            userError.style.display = 'block';
+            isValid = false;
+        }
+
+        // Check if dateDebut is empty
+        if (dateDebutInput.value.trim() === '') {
+            dateDebutError.style.display = 'block';
+            isValid = false;
+        }
+
+        // Check if dateFin is empty
+        if (dateFinInput.value.trim() === '') {
+            dateFinError.style.display = 'block';
+            isValid = false;
+        }
+
+        // Check if dateFin is after dateDebut
+        if (dateDebutInput.value.trim() !== '' && dateFinInput.value.trim() !== '') {
+            var dateDebut = new Date(dateDebutInput.value);
+            var dateFin = new Date(dateFinInput.value);
+            if (dateFin <= dateDebut) {
+                dateOrderError.style.display = 'block';
+                isValid = false;
+            }
+        }
+
+        // Check if dateFin is at least 30 days after dateDebut
+        if (dateDebutInput.value.trim() !== '' && dateFinInput.value.trim() !== '') {
+            var minDate = new Date(dateDebutInput.value);
+            minDate.setDate(minDate.getDate() + 30); // Add 30 days to the start date
+            var dateFin = new Date(dateFinInput.value);
+            if (dateFin < minDate) {
+                dateMinimumError.style.display = 'block';
+                isValid = false;
+            }
+        }
+
+        return isValid;
+    }
+</script>
+
+<style>
+    .invalid-feedback {
+        display: none;
+        color: red;
+        font-size: 0.875em;
+    }
+</style>

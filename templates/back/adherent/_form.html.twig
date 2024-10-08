@@ -1,0 +1,54 @@
+{{ form_start(form) }}
+                                                <div class="mb-4 row align-items-center">
+                                                    <label class="form-label-title col-sm-3 mb-0">Nom : </label>
+                                                    <div class="col-sm-9">
+                                                        {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+                                                    </div>
+                                                </div>
+
+                                                <div class="mb-4 row align-items-center">
+                                                    <label class="form-label-title col-sm-3 mb-0">Prénom : </label>
+                                                    <div class="col-sm-9">
+                                                        {{ form_widget(form.prenom, {'attr': {'class': 'form-control'}}) }}
+                                                    </div>
+                                                </div>
+
+                                                <div class="mb-4 row align-items-center">
+                                                    <label class="form-label-title col-sm-3 mb-0">Téléphone : </label>
+                                                    <div class="col-sm-9">
+                                                        {{ form_widget(form.telephone, {'attr': {'class': 'form-control'}}) }}
+                                                    </div>
+                                                </div>
+
+                                                <div class="mb-4 row align-items-center">
+                                                    <label class="form-label-title col-sm-3 mb-0">Email : </label>
+                                                    <div class="col-sm-9">
+                                                        {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                                                    </div>
+                                                </div>
+
+                                                <div class="mb-4 row align-items-center">
+                                                    <label class="form-label-title col-sm-3 mb-0">CIN : </label>
+                                                    <div class="col-sm-9">
+                                                        {{ form_widget(form.cin, {'attr': {'class': 'form-control'}}) }}
+                                                    </div>
+                                                </div>
+
+                                                <div class="mb-4 row align-items-center">
+                                                    <label class="form-label-title col-sm-3 mb-0">Sexe : </label>
+                                                    <div class="col-sm-9">
+                                                        {{ form_widget(form.sexe, {'attr': {'class': 'form-control'}}) }}
+                                                    </div>
+                                                </div>
+
+                                                
+                                                <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                                                    <button class="btn btn-primary mr-3">{{ button_label|default('Enregistrer') }}</button>
+                                                    <input type="reset" class="btn btn-secondary btn">
+                                                </div>
+{{ form_end(form) }}
+    
+    
+    
+
+

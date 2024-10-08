@@ -1,0 +1,97 @@
+{% extends 'base.html.twig' %}
+{% block title %}Register{% endblock %}
+{% block body %}
+
+<style>
+.form-error {
+    color: red;
+    font-size: 1.2em;
+}
+</style>
+
+<div class="bg-image" style="background-image: url('{{ asset('front/assets/img/hero/hero-2.jpg') }}'); background-size: cover; background-position: center; width: 100vw; height: 100vh; background-color: #101010a1; ">
+<div class="container">
+    
+    
+        <div class="row justify-content-center">
+            <div class="col-9" style="margin-top: 20px;">
+                <h1 class="text-6xl pt-12 pb-8 text-center my-4 mb-4" style="color: #FFFFFF; font-size: 50px; margin-bottom: 80px" >Inscrire maintenant !</h1>
+
+                {{ form_start(registrationForm, {'attr': {novalidate:'novalidate'}}) }}
+
+
+                    <div style="margin-top: 50px">
+                        <div class="row mb-4">
+                            <div class="col" style="margin-bottom: 50px">
+                                {{ form_widget(registrationForm.nom, {'attr': {'class': 'form-control input-green', 'placeholder': 'Nom'}}) }}
+                                {{ form_errors(registrationForm.nom, {'attr': {'class': 'text-danger'}}) }}
+
+                            </div>
+                            <div class="col" style="margin-bottom: 50px">
+                                {{ form_widget(registrationForm.prenom, {'attr': {'class': 'form-control input-green', 'placeholder': 'Prénom'}}) }}
+                                {{ form_errors(registrationForm.prenom) }}
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col" style="margin-bottom: 50px">
+                                {{ form_widget(registrationForm.telephone, {'attr': {'class': 'form-control input-green', 'placeholder': 'Numéro de téléphone'}}) }}
+                                {{ form_errors(registrationForm.telephone) }}
+                            </div>
+                            <div class="col" style="margin-bottom: 50px">
+                                {{ form_widget(registrationForm.cin, {'attr': {'class': 'form-control input-green', 'placeholder': 'Numéro de la CIN'}}) }}
+                                {{ form_errors(registrationForm.cin) }}
+                            </div>
+                            <div class="col" style="margin-bottom: 50px">
+                                {{ form_widget(registrationForm.sexe, {'attr': {'class': 'form-control input-green', 'placeholder': 'Sexe'}}) }}
+                                {{ form_errors(registrationForm.sexe) }}
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-8 mx-auto text-center" style="margin-bottom: 50px">
+                                {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control input-green', 'placeholder': 'Adresse e-mail'}}) }}
+                                {{ form_errors(registrationForm.email) }}
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-8 mx-auto text-center" style="margin-bottom: 50px">
+                                {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control input-green', 'placeholder': 'Mot de passe'}}) }}
+                                {{ form_errors(registrationForm.plainPassword) }}
+                            </div>
+                        </div>
+                        <div class="text-center"> <!-- Centrer le bouton -->
+                            <button type="submit" class="btn btn-primary mt-3 me-4">S'inscrire</button>
+                            <button type="button" class="btn btn-secondary mt-3" onclick="goBack()">Retour</button>
+                        </div>
+                    </div>
+
+                    {{ form_end(registrationForm) }}
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.input-green {
+    /*background-color: rgb(0 0 0 / 56%); */
+    background-color: white;
+}
+</style>
+
+{% endblock %}
+
+
+
+{% block javascripts %}
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+
+    
+
+</script>
+    
+{% endblock %}

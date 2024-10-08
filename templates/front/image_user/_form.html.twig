@@ -1,0 +1,13 @@
+{{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
+            <div class="form-group">
+                {{ form_widget(form.image, {'attr': {'class': 'form-control-file'}}) }}
+            </div>
+
+            
+            <div class="text-center">
+                <button class="btn btn-primary">{{ button_label|default('Modifier la photo') }}</button>
+                <a type="button" class="btn btn-secondary mx-4" href="{{path('index')}}">Retour</a>
+            </div>
+
+            
+{{ form_end(form) }}

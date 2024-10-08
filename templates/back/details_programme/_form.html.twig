@@ -1,0 +1,63 @@
+<!-- Div pour afficher le message de succès -->
+<div id="success-message" style="display: none; background-color: green; color: white; padding: 10px; margin-top: 20px; text-align: center;">
+    <!-- Le message sera inséré ici par JavaScript -->
+</div>
+
+{{ form_start(form, {'attr': {'onsubmit': 'return handleSubmit(event);'}}) }}
+                                                <div class="mb-4 row align-items-center">
+                                                    <label class="form-label-title col-sm-3 mb-0">Exercice : </label>
+                                                    <div class="col-sm-6">
+                                                        <select name="id1" class="form-control">
+                                                            <option class="disabled">Sélectionner un exercice</option>
+                                                        {% for item in exercices %}
+                                                            <option value="{{item.id}}">{{item.nom}}</option>
+                                                        {% endfor %}    
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="mb-4 row align-items-center">
+                                                    <label class="form-label-title col-sm-3 mb-0">Date : </label>
+                                                    <div class="col-sm-6">
+                                                        <input type="date" name="date" class="form-control" required>
+                                                    </div>
+                                                </div>
+                                                <div class="d-grid gap-2 d-md-flex justify-content-md-center" style="margin-top: 60px">
+                                                    <button type="submit" class="btn btn-primary mr-3">{{ button_label|default('Enregistrer') }}</button>
+                                                    <button type="button" class="btn btn-secondary" onclick="goBack()">Retour</button>
+                                                </div>
+
+                                                <script>
+                                                    function goBack() {
+                                                        window.history.back();
+                                                    }
+
+                                                    function handleSubmit(event) {
+        event.preventDefault();
+        if (confirm('Êtes-vous sûr de vouloir ajouter ce détail ?')) {
+            // Soumettre le formulaire
+            const form = event.target;
+            // Ajoutez votre logique de soumission de formulaire ici si nécessaire
+            // Par exemple, vous pouvez utiliser AJAX pour soumettre le formulaire sans rechargement de page
+            form.submit();
+
+            // Afficher le message de succès
+            const successMessage = document.getElementById('success-message');
+            successMessage.style.display = 'block';
+            successMessage.textContent = 'Cet exercice est ajouté avec succès !';
+        }
+        return false;
+    }
+                                                </script>
+
+                                                
+{{ form_end(form) }}
+
+
+
+
+    
+    
+    
+
+

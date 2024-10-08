@@ -1,0 +1,47 @@
+{% extends 'baseback.html.twig' %}
+
+{% block title %}Bannière{% endblock %}
+
+{% block container %}
+<div class="container d-flex justify-content-center" style="margin-top: 120px">
+    <div class="card shadow mb-5">
+        <div class="card-body">
+            <table class="table table-bordered table-hover" style="max-width: 700px;">
+                <tbody>
+                    <tr>
+                        <th scope="row">Id : </th>
+                        <td>{{ banniere.id }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Titre : </th>
+                        <td>{{ banniere.titre }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Description</th>
+                        <td>{{ banniere.description }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Images</th>
+                        <td>
+                            {% for imageBanniere in banniere.getImageBannieres() %}
+                                <img src="{{ asset('uploads/videos/' ~ imageBanniere.getImage()) }}" class="img-thumbnail" style="width:70px; height:70px;">
+                            {% endfor %}
+                        </td>
+            
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="d-flex justify-content-end my-4">
+                <button class="btn btn-secondary mx-4" onclick="goBack()">Retour</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+{% endblock %}

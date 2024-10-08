@@ -1,0 +1,38 @@
+{% extends 'baseback.html.twig' %}
+
+{% block title %}Nouveau adhérent{% endblock %}
+
+{% block container %}
+    <h1>Créer un nouveau adhérent</h1>
+
+    <div class="page-body">
+        <div class="content-wrapper">
+
+                <!-- New Product Add Start -->
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-sm-8 m-auto">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="card-header-2">
+                                                <h3 class="text-center">information de l'adhérent</h3>
+                                            </div>
+                                            {{ include('back/adherent/_form.html.twig') }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- New Product Add End -->
+</div>
+            </div>
+
+
+    
+
+    <a href="{{ path('app_back_adherent_index') }}">back to list</a>
+{% endblock %}

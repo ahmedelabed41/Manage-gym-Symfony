@@ -1,0 +1,67 @@
+
+{% extends 'baseback.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+ <!-- Container-fluid starts-->
+ <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+            <div class="page-body">
+                <!-- All User Table Start -->
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card card-table">
+                                <div class="card-body">
+                                    <div class="title-header option-title">
+                                        <h5>Tous les abonnements</h5>
+                                    </div>
+
+                                    <div class="table-responsive category-table">
+                                        <div>
+                                            <table class="table all-package theme-table" id="table_id">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Id</th>
+                                                        <th>Adherent</th>
+                                                        {#<th>DateInscription</th>#}
+                                                        <th>DateDebut</th>
+                                                        <th>DateFin</th>
+                                                        {#<th>Renouvellement</th>#}
+                                                        <th>Description</th>
+                                                        <th>Payement</th>
+                                                        <th>Statut</th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                {% for abonnement in abonnements %}
+                                                    <tr>
+                                                        <td>{{ abonnement.id }}</td>
+                                                        <td>{{ abonnement.user.nom }} {{ abonnement.user.prenom }}</td>
+                                                        <td>{{ abonnement.dateDebut }}</td>
+                                                        <td>{{ abonnement.dateFin }}</td>
+                                                        <td>{{ abonnement.description }}</td>
+                                                        <td>{{ abonnement.payement }}<span style="margin-left: 3px">dt</span></td>
+                                                        {% if abonnement.statut == 'en attente' %}
+                                                        <td style="color: #FFC107">{{ abonnement.statut }}</td>
+                                                        {% else %}
+                                                        <td style="color: #28A745">{{ abonnement.statut }}</td>
+                                                        {% endif %}
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <!-- All User Table Ends-->
+
+{% endblock %}
+

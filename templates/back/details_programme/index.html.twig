@@ -1,0 +1,114 @@
+{% extends 'baseback.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block container %}
+ <!-- Container-fluid starts-->
+ <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+            <div class="page-body">
+                <!-- All User Table Start -->
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card card-table">
+                                <div class="card-body">
+                                    <div class="title-header option-title">
+                                        <form class="d-inline-flex">
+                                       {% set programmeId = app.request.query.get('programmeId') %}
+<a href="{{ path('app_back_details_programme_new', {'id': programmeId}) }}" class="align-items-center btn btn-primary" style="margin-bottom: 15px">
+    Ajouter
+</a>
+
+                                        </form>
+                                    </div>
+
+                                    <div class="table-responsive category-table">
+                                        <div>
+                                            <table class="table all-package theme-table" id="tableauProgramme">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Id</th>
+                                                        <th>Exercices</th>
+                                                        <th>Date</th>
+                                                        <th>Id Programme</th>
+                                                        <th>actions</th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                {#{% if details_programme.programme.id == programmeId %}#}
+                                                {% for details_programme in details_programmes %}
+                                                            <tr>
+                                                                <td>{{ details_programme.id }}</td>
+                                                                <td> 
+                                                                    <a href="{{ path('app_back_exercice_show', {'id': details_programme.exercice.id}) }}">
+                                                                        <i class="fas fa-eye" style="color:yellow; font-size: 18px; margin-right: 10px"></i>
+                                                                    </a>
+                                                                    {{ details_programme.exercice.nom }}
+                                                                </td>
+                                                                <td>{{ details_programme.date }}</td>
+                                                                <td>{{ details_programme.programme.id }}</td>
+                                                                <td>
+                                                                    <div style="display: flex;">
+                                                                        <div style="display: inline;">
+                                                                            <ul style="list-style-type: none; padding: 0; margin: 0;">
+                                                                                <li style="display: inline;">
+                                                                                    <a href="{{ path('app_back_details_programme_show', {'id': details_programme.id}) }}">
+                                                                                        <i class="fas fa-eye" style="color:green; font-size: 18px"></i>
+                                                                                    </a>
+                                                                                </li>
+
+                                                                                <li style="display: inline; margin-left: 10px">
+                                                                                    <a href="{{ path('app_back_details_programme_edit', {'id': details_programme.id}) }}">
+                                                                                        <i class="fas fa-pencil-alt" style="font-size: 18px"></i>
+                                                                                    </a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+
+                                                                        <div style="display: inline; margin-left: 10px">
+                                                                            {{ include('back/details_programme/_delete_form.html.twig') }}
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                {% endfor %}
+                                                {#{% endif %}#}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-md-flex justify-content-center" style="margin-top: 15px">
+                                <button class="btn btn-secondary" onclick="goBack()" style="font-size: 20px">Retour</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <!-- All User Table Ends-->
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

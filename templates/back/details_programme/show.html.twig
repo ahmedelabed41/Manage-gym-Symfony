@@ -1,0 +1,85 @@
+{% extends 'baseback.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block container %}
+
+<div class="container d-flex justify-content-center" style="margin-top: 120px; font-size: 30px">
+    <div class="row">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-lg-12 m-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <div >
+    <form action="url_de_traitement" method="POST">
+    <div class="form-group">
+        <label for="id" style="text-decoration: underline"><b>Id : </b></label>
+        <label style="color: white; margin-left: 15px">{{ details_programme.id }}</label>
+    </div>
+    <div class="form-group">
+        <label for="nom" style="text-decoration: underline"><b>Les exercices : </b></label>
+        <label style="color: white; margin-left: 15px">{{ details_programme.exercice.nom }}</label>
+    </div>
+    <div class="form-group">
+        <label for="date" style="text-decoration: underline"><b>Date : </b></label>
+        <label style="color: white; margin-left: 15px">{{ details_programme.date }}</label>
+    </div>
+    <div class="form-group">
+        <label for="programme" style="text-decoration: underline"><b>Id du programme : </b></label>
+        <label style="color: white; margin-left: 15px">{{ details_programme.programme.id }}</label>
+    </div>
+    <!-- Vous pouvez ajouter d'autres champs ici si nécessaire -->
+</form>
+</div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+
+
+    {#<a href="{{ path('app_back_details_programme_index') }}">back to list</a>
+
+    <a href="{{ path('app_back_details_programme_edit', {'id': details_programme.id}) }}">edit</a>
+
+    {{ include('back/details_programme/_delete_form.html.twig') }}#}
+    <div class="d-flex justify-content-center my-4">
+        <button class="btn btn-secondary mx-4" onclick="goBack()">Retour</button>
+    </div>
+            
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

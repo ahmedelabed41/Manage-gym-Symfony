@@ -1,0 +1,324 @@
+{% extends 'basefront.html.twig' %}
+
+{% block title %}{% endblock %}
+
+
+
+
+{% block container %}
+
+
+<!-- Hero Section Begin -->
+    <section class="hero-section">
+        <div class="hs-slider owl-carousel">
+        {% for banniere in bannieres %}
+        
+            {% for imageBanniere in banniere.getImageBannieres() %}
+            <div class="hs-item set-bg" data-setbg="{{ asset('uploads/videos/' ~ imageBanniere.getImage()) }}">
+            {% endfor %}
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 offset-lg-6">
+                            <div class="hi-text">
+                                <span>{{ banniere.description }}</span>
+                                <h1>{{ banniere.titre }}</h1>
+                                <a href="{{path('about_us')}}" class="primary-btn">{{ banniere.textButton }}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+    </section>
+    <!-- Hero Section End -->
+
+<!-- ChoseUs Section Begin -->
+    <section class="choseus-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <span>Pourquoi nous-choisissez ?</span>
+                        <h2>REPOUSSEZ VOS LIMITES</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-sm-6">
+                    <div class="cs-item">
+                        <span class="flaticon-034-stationary-bike"></span>
+                        <h4>Équipements modernes</h4>
+                        <p>Les équipements modernes révolutionnent l'expérience de l'entraînement, offrant une fusion
+                         harmonieuse entre technologie de pointe et conception ergonomique.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="cs-item">
+                        <span class="flaticon-033-juice"></span>
+                        <h4>Plan de nutrition saine</h4>
+                        <p>Un plan de nutrition saine est bien plus qu'un simple régime alimentaire ; c'est un mode de vie
+                         axé sur des choix alimentaires équilibrés et nourrissants.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="cs-item">
+                        <span class="flaticon-002-dumbell"></span>
+                        <h4>Plan d'entraînement professionnel</h4>
+                        <p>Un plan d'entraînement professionnel est bien plus qu'une simple liste d'exercices ; c'est une feuille
+                         de route stratégique conçue pour optimiser les performances physiques et mentales.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    <!-- ChoseUs Section End -->
+
+    <!-- Classes Section Begin -->
+    <!-- HTML -->
+<section class="classes-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">     
+                <div class="section-title">
+                    <span>Nos types de programme</span>
+                    <h2>CE QUE NOUS POUVONS OFFRIR</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {% for item in typeProgrammes %}
+            <div class="col-lg-4 col-md-6">
+                <div class="class-item">
+                    <div class="ci-pic">
+                                {% if item.imageTypes|length > 0 %}
+                                    {% set imageType = item.imageTypes[0] %}
+                                    <img src="{{ asset('uploads/videos/' ~ imageType.image) }}" style="width:100px; height:250px;">
+                                {% else %}
+                                    <img src="{{ asset('uploads/videos/default.jpg') }}" alt="Default Image">
+                                {% endif %}
+                            </div>
+                    <div class="ci-text">
+                        <h4>{{ item.libelle }}</h4>
+                        <a href="{{ path('affichage_details', {'id': item.id}) }}"><i class="fa fa-angle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+    <!-- ChoseUs Section End -->
+
+    <section class="classes-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">     
+                    <div class="section-title">
+                        <span>Nos exercices</span>
+                        <h2>CE QUE NOUS POUVONS OFFRIR</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="hs-slider owl-carousel">
+                {% set counter = 0 %}
+                {% for item in exercices %}
+                    {% if counter == 0 %}
+                        <div class="row">
+                    {% endif %}
+                    
+                    <div class="col-lg-4 col-md-6">
+                        <div class="class-item">
+                            <div class="ci-pic">
+                                {% if item.imageExercices|length > 0 %}
+                                    {% set imageExercice = item.imageExercices[0] %}
+                                    <img src="{{ asset('uploads/videos/' ~ imageExercice.image) }}" style="width:100px; height:250px;" alt="{{ item.nom }}">
+                                {% else %}
+                                    <img src="{{ asset('uploads/videos/default.jpg') }}" alt="Default Image">
+                                {% endif %}
+                            </div>
+                            <div class="ci-text"> 
+                                <h4>{{ item.nom }}</h4>   
+                                <a href="{{ path('affichage_detail', {'id': item.id}) }}"><i class="fa fa-angle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    {% set counter = counter + 1 %}
+                    
+                    {% if counter == 3 %}
+                        </div>
+                        {% set counter = 0 %}
+                    {% endif %}
+                {% endfor %}
+                {% if counter != 0 %}
+                    </div> <!-- Close the last row if not complete -->
+                {% endif %}
+            </div>
+
+        </div>
+
+        </div>
+    </section>
+
+
+
+    <!-- Pricing Section Begin -->
+    <section class="pricing-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <span>Notre plan</span>
+                        <h2>Choisissez votre abonnement</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-3 col-md-8">
+                    <div class="ps-item">
+                        <h3>1 mois</h3>
+                        <div class="pi-price">
+                            <h2>80 dt</h2>
+                        </div>
+                        {% if not app.user %}
+                        <a href="{{path('app_login')}}" class="primary-btn pricing-btn">CONNECTEZ-VOUS</a>
+                        <a href="#" class="thumb-icon"></a>
+                        {% elseif not is_granted('ROLE_ADMIN') and not is_granted('ROLE_COACH') %}
+                        <a href="{{path('app_back_abonnements_new')}}" class="primary-btn pricing-btn">PASSER UN ABONNEMENT</a>
+                        <a href="#" class="thumb-icon"></a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-8">
+                    <div class="ps-item">
+                        <h3>3 mois</h3>
+                        <div class="pi-price">
+                            <h2>220 dt</h2>
+                        </div>
+                        {% if not app.user %}
+                        <a href="{{path('app_login')}}" class="primary-btn pricing-btn">CONNECTEZ-VOUS</a>
+                        <a href="#" class="thumb-icon"></a>
+                        {% elseif not is_granted('ROLE_ADMIN') and not is_granted('ROLE_COACH') %}
+                        <a href="{{path('app_back_abonnements_new')}}" class="primary-btn pricing-btn">PASSER UN ABONNEMENT</a>
+                        <a href="#" class="thumb-icon"></a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-8">
+                    <div class="ps-item">
+                        <h3>6 mois</h3>
+                        <div class="pi-price">
+                            <h2>400 dt</h2>
+                        </div>
+                        {% if not app.user %}
+                        <a href="{{path('app_login')}}" class="primary-btn pricing-btn">CONNECTEZ-VOUS</a>
+                        <a href="#" class="thumb-icon"></a>
+                        {% elseif not is_granted('ROLE_ADMIN') and not is_granted('ROLE_COACH') %}
+                        <a href="{{path('app_back_abonnements_new')}}" class="primary-btn pricing-btn">PASSER UN ABONNEMENT</a>
+                        <a href="#" class="thumb-icon"></a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-8">
+                    <div class="ps-item">
+                        <h3>1 an</h3>
+                        <div class="pi-price">
+                            <h2>760 dt</h2>
+                        </div>
+                        {% if not app.user %}
+                        <a href="{{path('app_login')}}" class="primary-btn pricing-btn">CONNECTEZ-VOUS</a>
+                        <a href="#" class="thumb-icon"></a>
+                        {% elseif not is_granted('ROLE_ADMIN') and not is_granted('ROLE_COACH') %}
+                        <a href="{{path('app_back_abonnements_new')}}" class="primary-btn pricing-btn">PASSER UN ABONNEMENT</a>
+                        <a href="#" class="thumb-icon"></a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Pricing Section End -->
+
+    <!-- Gallery Section Begin -->
+    <div class="gallery-section">
+        <div class="gallery">
+            <div class="grid-sizer"></div>
+            <div class="gs-item grid-wide set-bg" data-setbg="front/assets/img/gallery/gallery-1.jpg">
+                <a href="front/assets/img/gallery/gallery-1.jpg" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
+            </div>
+            <div class="gs-item set-bg" data-setbg="front/assets/img/gallery/gallery-2.jpg">
+                <a href="front/assets/img/gallery/gallery-2.jpg" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
+            </div>
+            <div class="gs-item set-bg" data-setbg="front/assets/img/gallery/gallery-3.jpg">
+                <a href="front/assets/img/gallery/gallery-3.jpg" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
+            </div>
+            <div class="gs-item set-bg" data-setbg="front/assets/img/gallery/gallery-4.jpg">
+                <a href="front/assets/img/gallery/gallery-4.jpg" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
+            </div>
+            <div class="gs-item set-bg" data-setbg="front/assets/img/gallery/gallery-5.jpg">
+                <a href="front/assets/img/gallery/gallery-5.jpg" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
+            </div>
+            <div class="gs-item grid-wide set-bg" data-setbg="front/assets/img/gallery/gallery-6.jpg">
+                <a href="front/assets/img/gallery/gallery-6.jpg" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
+            </div>
+        </div>
+    </div>
+    <!-- Gallery Section End -->
+
+    <!-- Team Section Begin -->
+    <section class="team-section spad">
+        <div class="container">
+            <div class="row justify-content-center">
+                
+                    <div class="team-title">
+                        <div class="section-title">
+                            <span class="row justify-content-center">Notre équipe</span>
+                            <h2>ENTRAINEZ-VOUS AVEC DES EXPERTS</h2>
+                        </div>
+                    </div>
+                
+            </div>
+
+            <div class="row">
+                <div class="ts-slider owl-carousel">
+                    {% for item in users %}
+                        <div class="col-lg-4">
+                            <div class="ts-item set-bg" data-setbg="{{ asset(item.getImageUsers()|length > 0 ? 'uploads/videos/' ~ item.getImageUsers().first.getImage() : 'front/assets/img/team/default.jpg') }}">
+                                <div class="ts_text">
+                                    <h4>{{ item.nom }} {{ item.prenom }}</h4>
+                                    <span>Coach privé</span>
+                                    {% if app.user %}
+                                    {% if not is_granted('ROLE_ADMIN') and not is_granted('ROLE_COACH') %}
+                                    <a type="button" href="{{path('app_back_affectation_new')}}" class="btn btn-success">Faire une affectation</a>
+                                    {% endif %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Team Section End -->
+
+
+
+
+    
+
+
+
+    
+
+{% endblock %}
+
+{% block javascripts %}
+
+{% endblock %}

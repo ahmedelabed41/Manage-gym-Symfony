@@ -1,0 +1,62 @@
+{% extends 'baseback.html.twig' %}
+
+{% block title %}Affectation index{% endblock %}
+
+{% block container %}
+ <!-- Container-fluid starts-->
+ <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+            <div class="page-body">
+                <!-- All User Table Start -->
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            
+                                <div class="card-body" >
+                                    
+
+                                    
+
+
+
+
+                                    {% if mesadh is not empty %}
+                                        {% if mesadh|length > 0 %}
+                                            <div class="d-flex justify-content-center my-4" style="margin-right: 100px">
+                                                <h2><b>Mes adhérents</b></h2>
+                                            </div>
+                                            <div class="card" style="width: 25rem; margin-left: 335px">
+                                                <div class="card-header text-center" style="text-decoration: underline"><b>Nom et prénom de l'adhérent</b></div>
+                                                <ul class="list-group list-group-flush">
+                                                {% for affectation in mesadh %}
+                                                    <li class="list-group-item text-center" style="background-color: #C0C0C0; color: black">{{ affectation.adherent.nom }} {{ affectation.adherent.prenom }}</li>
+                                                {% endfor %}
+                                                </ul>
+                                            </div>
+                                        {% endif %}
+                                    {% else %}
+                                        <div style="width: 50rem; margin-left: 150px; margin-top: 150px">
+                                            <div class="text-center"><h1>Vous n'avez pas des affectations</h1></div>
+                                        </div>
+                                    {% endif %}
+
+
+                                </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <!-- All User Table Ends-->
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+

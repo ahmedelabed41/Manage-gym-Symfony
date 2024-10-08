@@ -1,0 +1,94 @@
+
+
+
+
+
+
+
+
+
+
+{% extends 'baseback.html.twig' %}
+
+{% block title %}Utilisateur{% endblock %}
+
+{% block container %}
+
+<div class="container d-flex justify-content-center" style="margin-top: 120px">
+    <div class="row">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-lg-12 m-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-header-2" style="margin-bottom: 20px">
+                                <h3 class="text-center">Les informations de l'utilisateur</h3>
+                            </div>
+                            <div >
+    <form action="url_de_traitement" method="POST">
+    <div class="form-group">
+        <label for="id" style="text-decoration: underline">Id : </label>
+        <label style="color: white; margin-left: 15px">{{ user.id }}</label>
+    </div>
+    <div class="form-group">
+        <label for="role" style="text-decoration: underline">Rôle : </label>
+        <label style="color: white; margin-left: 15px">{{ user.roles ? user.roles|json_encode : '' }}</label>
+    </div>
+    <div class="form-group">
+        <label for="nom" style="text-decoration: underline">Nom : </label>
+        <label style="color: white; margin-left: 15px">{{ user.nom }}</label>
+    </div>
+    <div class="form-group">
+        <label for="prenom" style="text-decoration: underline">Prénom : </label>
+        <label style="color: white; margin-left: 15px">{{ user.prenom }}</label>
+    </div>
+    <div class="form-group">
+        <label for="telephone" style="text-decoration: underline">Téléphone : </label>
+        <label style="color: white; margin-left: 15px">{{ user.telephone }}</label>
+    </div>
+    <div class="form-group">
+        <label for="cin" style="text-decoration: underline">CIN : </label>
+        <label style="color: white; margin-left: 15px">{{ user.cin }}</label>
+    </div>
+    <div class="form-group">
+        <label for="sexe" style="text-decoration: underline">Sexe : </label>
+        <label style="color: white; margin-left: 15px">{{ user.sexe }}</label>
+    </div>
+    <div class="form-group">
+        <label for="email" style="text-decoration: underline">Email : </label>
+        <label style="color: white; margin-left: 15px">{{ user.email }}</label>
+    </div>
+    
+    <!-- Vous pouvez ajouter d'autres champs ici si nécessaire -->
+</form>
+</div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+
+
+    {#<a href="{{ path('app_back_user_index') }}">back to list</a>
+
+    <a href="{{ path('app_back_user_edit', {'id': user.id}) }}">edit</a>
+
+    {{ include('back/adherent/_delete_form.html.twig') }}#}
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+

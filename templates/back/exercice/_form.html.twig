@@ -1,0 +1,58 @@
+{{ form_start(form, {'attr': {'novalidate': 'novalidate', 'onsubmit': 'return validateForm(event)'}}) }}
+
+
+        <div class="mb-4 row align-items-center">
+            <label class="form-label-title col-sm-3 mb-0">Nom : </label>
+            <div class="col-sm-9">
+                {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.nom, {'attr': {'class': 'text-danger'}}) }}
+            </div>
+        </div>
+
+        <div class="mb-4 row align-items-center">
+            <label class="form-label-title col-sm-3 mb-0">Description : </label>
+            <div class="col-sm-9">
+                {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.description, {'attr': {'class': 'text-danger'}}) }}
+            </div>
+        </div>
+
+        <div class="mb-4 row align-items-center">
+            <label class="form-label-title col-sm-3 mb-0">Image : </label>
+            <div class="col-sm-9">
+                {{ form_widget(form.imageExercice, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.imageExercice, {'attr': {'class': 'text-danger'}}) }}
+            </div>
+        </div>
+
+        
+        <div class="mb-4 row align-items-center">
+            <label class="form-label-title col-sm-3 mb-0">Vidéo : </label>
+            <div class="col-sm-9">
+                {{ form_widget(form.videoExercice, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.videoExercice, {'attr': {'class': 'text-danger'}}) }}
+            </div>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-center" style="margin-top: 50px">
+            <button type="submit" class="btn btn-primary mr-3">{{ button_label|default('Enregistrer') }}</button>
+            <button type="button" class="btn btn-secondary mx-4" onclick="goBack()">Retour</button>
+        </div>
+
+{{ form_end(form) }}
+
+<script>
+
+    function validateForm(event) {
+        var isValid = true;
+
+        // Votre code de validation existant...
+
+        if (!isValid) {
+            event.preventDefault(); // Empêche le comportement par défaut du formulaire
+        }
+
+        return isValid;
+    }
+
+</script>

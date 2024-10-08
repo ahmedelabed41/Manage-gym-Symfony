@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reset your password{% endblock %}
+
+{% block body %}
+<div class="bg-image d-flex align-items-center justify-content-center" style="background-image: url('{{ asset('front/assets/img/hero/hero-1.jpg') }}'); background-size: cover; background-position: center; width: 100vw; height: 100vh; background-color: #101010a1;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <h1 class="text-white text-center mb-4">Réinitialiser votre mot de passe</h1>
+                <div class="col-5 my-4">
+                    <div class="login-form">
+                        {% for flash_error in app.flashes('reset_password_error') %}
+                            <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+                        {% endfor %}
+                        
+
+                    
+                        {{ form_start(requestForm) }}
+                            {{ form_row(requestForm.email,{'attr':{'class': 'form form-control'}}) }}
+                            <div>
+                                <small style="color: #FFFFFF">Saisissez votre adresse e-mail, et nous vous enverrons un lien pour réinitialiser votre mot de passe.</small>
+                            </div>
+
+                            <div class="text-center">
+                                <button class="btn btn-primary btn-block my-4">Envoyer à l'email</button>
+                            </div>
+                        {{ form_end(requestForm) }}
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'baseback.html.twig' %}
+
+{% block title %}Exercice{% endblock %}
+
+{% block container %}
+<div class="container d-flex justify-content-center" style="margin-top: 120px">
+    <div class="card shadow mb-5">
+        <div class="card-body">
+            <table class="table table-bordered table-hover" style="max-width: 700px;">
+                <tbody>
+                    <tr>
+                        <th scope="row">Id : </th>
+                        <td>{{ exercice.id }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Nom : </th>
+                        <td>{{ exercice.nom }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Description</th>
+                        <td>{{ exercice.description }}</td>
+                    </tr>
+                    {#<tr>
+                        <th scope="row">Type : </th>
+                        <td>{{ exercice.type }}</td>
+                    </tr>#}
+                    
+                    <tr>
+                        <th scope="row">Videos</th>
+                        <td>
+                            {% for videoExercice in exercice.getVideoExercices() %}
+                                <video width="260" height="180" controls>
+                                    <source src="{{ asset('uploads/videos/' ~ videoExercice.getVideo()) }}" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            {% endfor %}
+                        </td>
+                    </tr>
+
+                    {#<tr>
+                        <th scope="row">Images</th>
+                        <td>
+                            {% for imageExercice in exercice.getImageExercices() %}
+                                <img src="{{ asset('uploads/videos/' ~ imageExercice.getImage()) }}" class="img-thumbnail" style="width:50px; height:50px;">
+                            {% endfor %}
+                        </td>
+            
+                    </tr>#}
+                </tbody>
+            </table>
+
+            <div class="d-flex justify-content-end my-4">
+                <button class="btn btn-secondary mx-4" onclick="goBack()">Retour</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+{% endblock %}

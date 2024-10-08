@@ -1,0 +1,42 @@
+{% extends 'baseback.html.twig' %}
+
+{% block title %}Nouveau programme{% endblock %}
+
+{% block container %}
+
+    <div class="page-body">
+
+    
+
+                <!-- New Product Add Start -->
+                <div class="container" style="margin-top: 80px">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-sm-8 m-auto">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="card-header-2 mb-4 text-center">
+                                                <h3 class="mb-4">Les informations du programme</h3>
+                                            </div>
+
+    {{ include('back/programme/_form.html.twig', {'button_label': 'Enregistrer'}) }}
+
+    {#<a href="{{ path('app_back_programme_index') }}" style="text-decoration: underline; font-size: 17px;" class="mt-4">back to list</a>#}
+    
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- New Product Add End -->
+
+            </div>
+
+
+    
+
+    <a href="{{ path('app_back_programme_index') }}">back to list</a>
+{% endblock %}

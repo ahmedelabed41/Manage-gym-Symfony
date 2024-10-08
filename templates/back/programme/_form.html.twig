@@ -1,0 +1,120 @@
+{{ form_start(form, { 'attr': { 'onsubmit': 'return validateForm()' } }) }}
+
+<div class="mb-4 row align-items-center">
+    <label class="form-label-title col-sm-3 mb-0">User : </label>
+    <div class="col-sm-6">
+        <select name="userId" class="form-control">
+            {#<option class="disabled">Sélectionner un adhérent</option>#}
+        {#{% for item in affectations %}
+            <option value="{{item.id}}">{{item.adherent.nom}} {{item.adherent.prenom}}</option>
+        {% endfor %}#}
+        {% for item in users %}
+            <option value="{{item.adherent.id}}">{{item.adherent.nom}} {{item.adherent.prenom}}</option>
+        {% endfor %}    
+        </select>
+    </div>
+</div>
+
+
+<div class="mb-4 row align-items-center">
+    <label class="form-label-title col-sm-3 mb-0">Type : </label>
+    <div class="col-sm-6">
+        {{ form_widget(form.typeId, { 'attr': {'class': 'form-control'}, 'full_name': 'libelle' }) }}
+    </div>
+</div>
+
+
+<div class="mb-4 row align-items-center">
+    <label class="form-label-title col-sm-3 mb-0">Date de début :</label>
+    <div class="col-sm-6">
+        <input type="date" name="dateDebut" class="form-control" id="dateDebutInput" value="{{ programme.dateDebut ? programme.dateDebut|date('Y-m-d') : '' }}">
+        <div class="invalid-feedback" id="dateDebutError">La date de début ne peut pas être vide</div>
+    </div>
+</div>
+
+<div class="mb-4 row align-items-center">
+    <label class="form-label-title col-sm-3 mb-0">Date de fin :</label>
+    <div class="col-sm-6">
+        <input type="date" name="dateFin" class="form-control" id="dateFinInput" value="{{ programme.dateFin ? programme.dateFin|date('Y-m-d') : '' }}">
+        <div class="invalid-feedback" id="dateFinError">La date de fin ne peut pas être vide</div>
+        <div class="invalid-feedback" id="dateOrderError">La date de fin doit être après la date de début</div>
+        <div class="invalid-feedback" id="dateMinimumError">La date de fin doit être au moins 30 jours après la date de début</div>
+
+    </div>
+</div>
+
+
+
+<div class="d-grid gap-2 d-md-flex justify-content-md-center">
+    <button type="submit" class="btn btn-primary mr-3">{{ button_label|default('Enregistrer') }}</button>
+    <button type="button" class="btn btn-secondary" onclick="goBack()" >Retour</button>
+</div>
+
+
+
+{{ form_end(form) }}
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+
+    function validateForm() {
+        var isValid = true;
+
+        var dateDebutInput = document.getElementById('dateDebutInput');
+        var dateFinInput = document.getElementById('dateFinInput');
+
+        var dateDebutError = document.getElementById('dateDebutError');
+        var dateFinError = document.getElementById('dateFinError');
+        var dateOrderError = document.getElementById('dateOrderError');
+
+        // Reset errors
+        dateDebutError.style.display = 'none';
+        dateFinError.style.display = 'none';
+        dateOrderError.style.display = 'none';
+
+        // Check if dateDebut is empty
+        if (dateDebutInput.value.trim() === '') {
+            dateDebutError.style.display = 'block';
+            isValid = false;
+        }
+
+        // Check if dateFin is empty
+        if (dateFinInput.value.trim() === '') {
+            dateFinError.style.display = 'block';
+            isValid = false;
+        }
+
+        // Check if dateFin is after dateDebut
+        if (dateDebutInput.value.trim() !== '' && dateFinInput.value.trim() !== '') {
+            var dateDebut = new Date(dateDebutInput.value);
+            var dateFin = new Date(dateFinInput.value);
+            if (dateFin <= dateDebut) {
+                dateOrderError.style.display = 'block';
+                isValid = false;
+            }
+        } 
+
+        // Check if dateFin is at least 30 days after dateDebut
+        if (dateDebutInput.value.trim() !== '' && dateFinInput.value.trim() !== '') {
+            var minDate = new Date(dateDebutInput.value);
+            minDate.setDate(minDate.getDate() + 30); // Add 30 days to the start date
+            var dateFin = new Date(dateFinInput.value);
+            if (dateFin < minDate) {
+                dateMinimumError.style.display = 'block';
+                isValid = false;
+            }
+        }
+
+        return isValid;
+    }
+</script>
+
+<style>
+    .invalid-feedback {
+        display: none;
+        color: red;
+        font-size: 1.2em;
+    }
+</style>

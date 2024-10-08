@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit ImageUser{% endblock %}
+
+{% block body %}
+    <h1>Edit ImageUser</h1>
+
+    {{ include('front/image_user/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_front_image_user_index') }}">back to list</a>
+
+    {{ include('front/image_user/_delete_form.html.twig') }}
+{% endblock %}

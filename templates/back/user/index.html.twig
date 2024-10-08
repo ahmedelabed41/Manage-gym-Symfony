@@ -1,0 +1,77 @@
+{% extends 'baseback.html.twig' %}
+
+{% block title %}Liste des Utilisateurs{% endblock %}
+
+{% block container %}
+<div class="content-wrapper">
+    <div class="page-body">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card card-table">
+                        <div class="card-body">
+                            <div class="title-header option-title">
+                                <h5 style="margin-bottom: 40px">Tous les utilisateurs</h5>
+                            </div>
+
+                            <div class="table-responsive category-table">
+                                <div>
+                                    <table class="table all-package theme-table" id="table_id">
+                                        <thead>
+                                            <tr>
+                                                <th>Id</th>
+                                                <th>Rôle</th>
+                                                <th>Nom</th>
+                                                <th>Prénom</th>
+                                                <th>Email</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            {% for user in users %}
+                                                <tr>
+                                                    <td>{{ user.id }}</td>
+                                                    <td>{{ user.tache }}</td>
+                                                    <td>{{ user.nom }}</td>
+                                                    <td>{{ user.prenom }}</td>
+                                                    <td>{{ user.email }}</td>
+                                                    <td>
+                                                        <div style="display: flex;">
+                                                            <div style="display: inline;">
+                                                                <ul style="list-style-type: none; padding: 0; margin: 0;">
+                                                                    <li style="display: inline;">
+                                                                        <a href="{{ path('app_back_adherent_show', {'id': user.id}) }}">
+                                                                            <i class="fas fa-eye" style="color:green; font-size: 18px"></i>
+                                                                        </a>
+                                                                    </li>
+
+                                                                    <li style="display: inline; margin-left: 10px">
+                                                                        <a href="{{ path('app_back_user_edit', {'id': user.id}) }}">
+                                                                            <i class="fas fa-pencil-alt" style="font-size: 18px"></i>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+
+                                                            <div style="display: inline; margin-left: 10px">
+                                                                {{ include('back/user/_delete_form.html.twig') }}
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
